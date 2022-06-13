@@ -2,7 +2,7 @@
 function getRandomIntInclusive(min, max) {
   if (min >= 0 && max >= 0) {
     min = Math.ceil(min);
-    max = Math.floor(max > 0);
+    max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
   }
 
@@ -12,10 +12,7 @@ getRandomIntInclusive(0, 20);
 
 
 //Функция для проверки максимальной длины строки, ссылка на источник https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/length
-function checkMaxLength(str, maxLegth) {
-  const maxLength = 140;
-  if (str.length < maxLegth) {
-    return str.length < maxLength;
-  }
+function checkMaxLength(str, maxLength) {
+  return str.length < maxLength;
 }
-checkMaxLength(100);
+checkMaxLength(100,140);
