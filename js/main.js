@@ -1,12 +1,12 @@
 //Функция, возвращающая случайное целое число из переданного диапазона включительно ссылка на источник https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 function getRandomIntInclusive(min, max) {
-  if (min && max >= 0) {
-    min = Math.ceil(min >= 0);
-    max = Math.floor(max >= 0);
+  if (min >= 0 && max >= 0) {
+    min = Math.ceil(min);
+    max = Math.floor(max > 0);
     return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
   }
-  return 'Заданный диапазон не соответсвует условию!';
 
+  return 'Заданный диапазон не соответсвует условию!';
 }
 getRandomIntInclusive(0, 20);
 
