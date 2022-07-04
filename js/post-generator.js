@@ -76,7 +76,7 @@ const generateComments = (length) =>
  */
 const generatePost = (id) => ({
   id,
-  url: `photos-${id}.jpg`,
+  url: `photos/${id}.jpg`,
   description: getItemFromArray(DESCRIPTIONS),
   likes: getIntegerInRange(...LIKES_RANGE),
   comments: generateComments(getIntegerInRange(...COMMENTS_RANGE))
