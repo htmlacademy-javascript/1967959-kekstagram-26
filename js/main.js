@@ -1,5 +1,7 @@
+import './upload.js';
 import createThumbnailsFragment from './post-thumbnail.js';
 import generatePosts from './post-generator.js';
+
 
 // Миниатюры публикаций.
 
