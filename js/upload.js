@@ -11,7 +11,7 @@ const formElement = document.querySelector('#upload-select-image');
  * Окно редактирования.
  * @type {HTMLDivElement}
  */
-const overlayElement = formElement.querySelector('.img-upload__overlay');
+const modalElement = formElement.querySelector('.img-upload__overlay');
 
 /**
  * Методы установки ограничений для Hashtags и описаний.
@@ -27,10 +27,10 @@ const constraints = createConstrainer(formElement, {
  * @param {Event} event
  */
 const handleFileChange = () => {
-  openModal(overlayElement);
+  openModal(modalElement);
 };
 
-openModal(overlayElement);
+//openModal(modalElement);
 
 formElement.filename.addEventListener('change', handleFileChange);
 

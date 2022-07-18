@@ -1,5 +1,5 @@
 import './upload.js';
-import createThumbnailsFragment from './post-thumbnail.js';
+import createThumbnailsFragment from './thumbnail.js';
 import generatePosts from './post-generator.js';
 
 
