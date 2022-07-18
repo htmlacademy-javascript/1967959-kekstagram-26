@@ -5,19 +5,24 @@ import '../pristine/pristine.min.js';
  * @param {HTMLFormElement} formElement
  * @param {Object} options
  */
-const createConstraints = (formElement, options) => {
+const createConstrainer = (formElement, options) => {
   const pristine = new Pristine(formElement, options);
+
   return {
+    /**
+     * Вернёт список хэштэгов.
+     * @type {string[]}
+     */
     get hashtags() {
       const value = formElement.hashtags.value.trim();
       return value.length ? value.split(/\s+/) : [];
     },
 
     /**
-     * Установит синтаксис хэштэгов.
+     * Установит синтаксис hashtags.
      */
     setHashtagsSyntax() {
-      const message = 'Хэштэг начинается с символа # и состоит из букв/чисел';
+      const message = 'Hashtags начинается с символа # и состоит из букв/чисел';
       const pattern = /^#[a-zа-яё0-9]+$/i;
       const isValid = () => this.hashtags.every((hashtag) => pattern.test(hashtag));
 
@@ -27,10 +32,10 @@ const createConstraints = (formElement, options) => {
     },
 
     /**
-     * Установит ограничение повтора хэштэгов.
+     * Установит ограничение повтора Hashtags.
      */
     setHashtagsRepetitionConstraint() {
-      const message = 'Хэштэг не может повторяться';
+      const message = 'Hashtag не может повторяться';
       const isValid = () => {
         const hashtags = this.hashtags.map((hashtag) => hashtag.toLowerCase());
 
@@ -43,11 +48,11 @@ const createConstraints = (formElement, options) => {
     },
 
     /**
-     * Установит ограничение максимальной длинны хэштэга.
+     * Установит ограничение максимальной длинны Hashtag.
      * @param {number} maxLength
      */
     setHashtagsMaxItemLength(maxLength) {
-      const message = `Хэштэг не может быть более ${maxLength} символов`;
+      const message = `Hashtag не может быть более ${maxLength} символов`;
       const isValid = () => this.hashtags.every((hashtag) => hashtag.length <= maxLength);
 
       pristine.addValidator(formElement.hashtags, isValid, message, 1, true);
@@ -56,11 +61,11 @@ const createConstraints = (formElement, options) => {
     },
 
     /**
-     * Установит ограничение количества хэштэгов.
+     * Установит ограничение количества Hashtag.
      * @param {number} maxLength
      */
     setHashtagsMaxItems(maxLength) {
-      const message = `Не более ${maxLength} хэштэгов`;
+      const message = `Не более ${maxLength} Hashtags`;
       const isValid = () => this.hashtags.length <= maxLength;
 
       pristine.addValidator(formElement.hashtags, isValid, message, 1, true);
@@ -83,4 +88,4 @@ const createConstraints = (formElement, options) => {
   };
 };
 
-export default createConstraints;
+export default createConstrainer;
