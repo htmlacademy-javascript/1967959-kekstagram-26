@@ -1,5 +1,5 @@
 import openModal from './modal.js';
-import createConstraints from './upload-constraints.js';
+import createConstrainer from './upload-constrainer.js';
 
 /**
  * Форма публикации.
@@ -14,9 +14,9 @@ const formElement = document.querySelector('#upload-select-image');
 const overlayElement = formElement.querySelector('.img-upload__overlay');
 
 /**
- * Методы установки ограничений для хэштэгов и описаний.
+ * Методы установки ограничений для Hashtags и описаний.
  */
-const constraints = createConstraints(formElement, {
+const constraints = createConstrainer(formElement, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'text__error'
@@ -26,11 +26,11 @@ const constraints = createConstraints(formElement, {
  * Откроет окно редактирования.
  * @param {Event} event
  */
-const handleFileChange = (event) => {
+const handleFileChange = () => {
   openModal(overlayElement);
 };
 
-//openModal(overlayElement);
+openModal(overlayElement);
 
 formElement.filename.addEventListener('change', handleFileChange);
 
