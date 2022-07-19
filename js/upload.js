@@ -21,6 +21,12 @@ const modalElement = formElement.querySelector('.img-upload__overlay');
 const imageElement = modalElement.querySelector('.img-upload__preview img');
 
 /**
+ * Выбор эффекта.
+ * @type {HTMLFieldSetElement}
+ */
+const effectTabsElement = modalElement.querySelector('.img-upload__effects');
+
+/**
  * Управление масштабом.
  */
 const scaleControlElement = initScaleControl(
@@ -45,6 +51,15 @@ const handleScaleControlUpdate = (event) => {
 };
 
 /**
+ * Применит выбранный эффект.
+ * @param {Event} event
+ */
+const handleEffectTabsChange = (event) => {
+  const effect = event.target.value;
+  imageElement.className = `effects__preview--${effect}`;
+};
+
+/**
  * Откроет окно редактирования.
  * @param {Event} event
  */
@@ -59,6 +74,9 @@ formElement.filename.addEventListener('change', handleFileChange);
 
 // Реакция на изменение масштаба
 scaleControlElement.addEventListener('update', handleScaleControlUpdate);
+
+// Реакция на выбор эффекта
+effectTabsElement.addEventListener('change', handleEffectTabsChange);
 
 // Ограничения для меток и описания.
 constrainer
