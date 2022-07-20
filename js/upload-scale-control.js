@@ -46,3 +46,4 @@ const initScaleControl = (element) => {
 };
 
 export default initScaleControl;
+

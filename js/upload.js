@@ -1,6 +1,8 @@
 import openModal from './modal.js';
 import createConstrainer from './upload-constrainer.js';
 import initScaleControl from './upload-scale-control.js';
+import renderEffectSlider from './upload-effect-slider.js';
+
 
 /**
  * Форма публикации.
@@ -34,6 +36,13 @@ const scaleControlElement = initScaleControl(
 );
 
 /**
+ * Управление насыщенностью эффекта.
+ */
+const effectSlider = renderEffectSlider(
+  modalElement.querySelector('.effect-level__slider')
+);
+
+/**
  * Методы установки ограничений для Hashtags и описаний.
  */
 const constrainer = createConstrainer(formElement, {
@@ -51,13 +60,29 @@ const handleScaleControlUpdate = (event) => {
 };
 
 /**
+ * Применит насыщенность эффекта.
+ * @param {string[]} values
+ */
+const handleEffectSliderUpdate = ([value]) => {
+  console.log(value);
+  imageElement.style.filter = value;
+  formElement['effect-level'].value = effectSlider.get(true);
+};
+
+/**
  * Применит выбранный эффект.
  * @param {Event} event
  */
 const handleEffectTabsChange = (event) => {
   const effect = event.target.value;
+  const isHidden = effectSlider.defaultEffect === effect;
+
   imageElement.className = `effects__preview--${effect}`;
+
+  effectSlider.updateRangeOptions(effect);
+  effectSlider.target.closest('.effect-level').classList.toggle('hidden', isHidden);
 };
+
 
 /**
  * Откроет окно редактирования.
@@ -75,8 +100,12 @@ formElement.filename.addEventListener('change', handleFileChange);
 // Реакция на изменение масштаба
 scaleControlElement.addEventListener('update', handleScaleControlUpdate);
 
+// Реакция на изменение насыщенности эффекта
+effectSlider.on('update', handleEffectSliderUpdate);
+
 // Реакция на выбор эффекта
 effectTabsElement.addEventListener('change', handleEffectTabsChange);
+
 
 // Ограничения для меток и описания.
 constrainer
